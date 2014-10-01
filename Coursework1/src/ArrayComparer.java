@@ -8,16 +8,23 @@ public class ArrayComparer {
   
   static int counter = 0;
   static int number;
-  static String guard = "array1";
+  static int guard = 1;
   
   static Scanner input = new Scanner( System.in );
   static Printer printer = new Printer();
 
   public static void main(String[] args) {
-	while (guard != "stop"){
+	while (guard == 1 || guard == 2){
 	  number = number();
-	  isNumberZero(number);
-	  if (isNumberInArray(number) == false) { addNumberToArray(number); }
+	  if (isZero(number) == false) {
+		switch (guard) {
+          case 1:  if (isNumberInArray(number, array1) == false) { addNumberToArray(number); }
+                   break;
+          case 2:  if (isNumberInArray(number, array2) == false) { addNumberToArray(number); }
+                   break;
+          default: break;
+		}
+	  }
 	}
 	addArrays();
 	print();
@@ -51,7 +58,7 @@ public class ArrayComparer {
   
   public static boolean isNumberInArray(int number) {
 	boolean isContained = false;
-	if (guard == "array1") {
+	if (guard == 1) {
 	  for (int element : array1) {
 	    if (number == element) { isContained = true; }
 	  }
@@ -62,15 +69,13 @@ public class ArrayComparer {
 	}
     return isContained;
   }
-  public static void isNumberZero(int number) {
-	  // true if 0 false if not zero
-	if (number == 0) { 
-	  if (guard == "array1") {
-		guard = "array2";
-		counter = 0;
-      } else {
-	    guard = "stop";
-      }
+
+  public static boolean isZero(int number){
+	if (number == 0){
+	  guard++;
+	  return true;
+	} else {
+	  return false;
 	}
   }
   // get user input
@@ -81,7 +86,7 @@ public class ArrayComparer {
 	return number;
   }  
   public static void addNumberToArray(int number) {
-	if (guard == "array1") {
+	if (guard == 1) {
 	  array1[counter] = number;
 	} else {
 	  array2[counter] = number;
