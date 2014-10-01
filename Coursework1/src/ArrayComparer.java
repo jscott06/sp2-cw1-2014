@@ -6,11 +6,9 @@ public class ArrayComparer {
   static int[] array2 = new int[100];
   
   static int counter = 0;
-  static boolean stopInput = false;
   static int number;
   static String guard = "array1";
   
-
   static Scanner input = new Scanner( System.in );
 
   public static void main(String[] args) {
@@ -29,12 +27,6 @@ public class ArrayComparer {
       System.out.println(element);
     }
   }
-  
-  /* when introducing array2
-   - restart counter
-   - 
-  */
-  // this will need to be modified for the introduction of array2
   public static boolean isNumberInArray(int number) {
 	boolean isContained = false;
 	if (guard == "array1") {
