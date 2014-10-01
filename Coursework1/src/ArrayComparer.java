@@ -4,6 +4,7 @@ public class ArrayComparer {
 
   static int[] array1 = new int[100];
   static int[] array2 = new int[100];
+  static int[] sumArray = new int[200];
   
   static int counter = 0;
   static int number;
@@ -18,7 +19,7 @@ public class ArrayComparer {
 	  isNumberZero(number);
 	  if (isNumberInArray(number) == false) { addNumberToArray(number); }
 	}
-	
+	addArrays();
 	print();
   }
   
@@ -27,6 +28,25 @@ public class ArrayComparer {
 	Printer.arrayNumbers(array1);
 	System.out.println("ARRAY2:");
 	Printer.arrayNumbers(array2);
+	System.out.println("SUMARRAY:");
+	Printer.arrayNumbers(sumArray);
+  }
+  
+  public static void addArrays(){
+	for (int i = 0; i<100; i++){
+	  sumArray[i] = array1[i];
+	}
+	for (int j = 100; j<200; j++){
+	  if (isNumberInArray(array2[j-100], sumArray) == false) { sumArray[j] = array2[j-100]; }
+	}
+  }
+  
+  public static boolean isNumberInArray(int number, int[] array){
+	  boolean isContained = false;
+	for (int element : array) {
+	  if (number == element) { isContained = true; }
+	}
+	return isContained; 
   }
   
   public static boolean isNumberInArray(int number) {
