@@ -10,6 +10,7 @@ public class ArrayComparer {
   static String guard = "array1";
   
   static Scanner input = new Scanner( System.in );
+  static Printer printer = new Printer();
 
   public static void main(String[] args) {
 	while (guard != "stop"){
@@ -18,15 +19,16 @@ public class ArrayComparer {
 	  if (isNumberInArray(number) == false) { addNumberToArray(number); }
 	}
 	
-	System.out.println("ARRAY1");
-	for (int element : array1) {
-      System.out.println(element);
-    }
-	System.out.println("ARRAY2");
-	for (int element : array2) {
-      System.out.println(element);
-    }
+	print();
   }
+  
+  public static void print(){
+	System.out.println("ARRAY1:");
+	Printer.arrayNumbers(array1);
+	System.out.println("ARRAY2:");
+	Printer.arrayNumbers(array2);
+  }
+  
   public static boolean isNumberInArray(int number) {
 	boolean isContained = false;
 	if (guard == "array1") {
