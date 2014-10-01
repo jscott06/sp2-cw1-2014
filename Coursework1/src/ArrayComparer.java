@@ -4,10 +4,12 @@ public class ArrayComparer {
 
   static int[] array1 = new int[100];
   static int[] array2 = new int[100];
-  static int[] sumArray = new int[200];
+  static int elementsInCommon = 0;
   
   static int counter = 0;
   static int number;
+  
+  // Allows to choose on which array will work on
   static int guard = 1;
   
   static Scanner input = new Scanner( System.in );
@@ -26,28 +28,38 @@ public class ArrayComparer {
 		}
 	  }
 	}
-	addArrays();
 	print();
   }
   
   public static void print(){
-	System.out.println("ARRAY1:");
+	System.out.println("Values for array 1 is:");
 	Printer.arrayNumbers(array1);
-	System.out.println("ARRAY2:");
+	System.out.println("Values for array 2 is:");
 	Printer.arrayNumbers(array2);
-	System.out.println("SUMARRAY:");
-	Printer.arrayNumbers(sumArray);
+	System.out.println("Common data:");
+	Printer.arrayNumbers(findCommonNumbers());
+	System.out.println("Number of common data is:");
+	System.out.print(elementsInCommon);
+	
+	//TODO
+//	System.out.println("Non-common values for array 1 is:");
+//	System.out.println("Non-common values for array 2 is:");
   }
   
-  public static void addArrays(){
+  public static int[] findCommonNumbers(){
+	int[] commonNumbers = new int[100];
 	for (int i = 0; i<100; i++){
-	  sumArray[i] = array1[i];
+	  // need to take out of the equation all the zeros
+      if (isNumberInArray(array1[i], array2) == true && array1[i] != 0){
+        commonNumbers[i] = array1[i];
+        elementsInCommon++;
+	  }
 	}
-	for (int j = 100; j<200; j++){
-	  if (isNumberInArray(array2[j-100], sumArray) == false) { sumArray[j] = array2[j-100]; }
-	}
+	return commonNumbers;
   }
   
+  
+  // Checks if provided number is contained in provided array
   public static boolean isNumberInArray(int number, int[] array){
 	  boolean isContained = false;
 	for (int element : array) {
@@ -55,21 +67,8 @@ public class ArrayComparer {
 	}
 	return isContained; 
   }
-  
-  public static boolean isNumberInArray(int number) {
-	boolean isContained = false;
-	if (guard == 1) {
-	  for (int element : array1) {
-	    if (number == element) { isContained = true; }
-	  }
-	} else {
-	  for (int element : array2) {
-	    if (number == element) { isContained = true; }
-	  }
-	}
-    return isContained;
-  }
 
+  // Checks if inserted number is 0, if true also add 1 to guard
   public static boolean isZero(int number){
 	if (number == 0){
 	  guard++;
@@ -85,6 +84,8 @@ public class ArrayComparer {
 	number = input.nextInt();
 	return number;
   }  
+ 
+  // add numbers to arrays
   public static void addNumberToArray(int number) {
 	if (guard == 1) {
 	  array1[counter] = number;
