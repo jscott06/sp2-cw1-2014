@@ -10,32 +10,36 @@ public class ArrayComparer {
   static Scanner input = new Scanner( System.in );
 
   public static void main(String[] args) {
- 
-	  while (stopInput == false){
-		  int number = number();
-		  isNumberZero(number);
-		  addNumberToArray(number);
+	while (stopInput == false){
+	  int number = number();
+	  isNumberZero(number);
+	  if (isNumberInArray(number) == false) { addNumberToArray(number); }
 	}
-
-	  for (int element : array1) {
-       System.out.println(element);
+	for (int element : array1) {
+      System.out.println(element);
     }
+  }
+  
+  public static boolean isNumberInArray(int number) {
+	boolean isContained = false;
+	  for (int element : array1) {
+	    if (number == element) { isContained = true; }
+	  }
+    return isContained;
   }
   public static void isNumberZero(int number) {
 	  // true if 0 false if not zero
-	  if (number == 0){
-		  stopInput = true;
-	  }
+	  if (number == 0) { stopInput = true; }
   }
   // get user input
   public static int number(){
-	  int number;
-	  System.out.println("Add integer, type 0 if you want to terminate");
-	  number = input.nextInt();
-	  return number;
+	int number;
+	System.out.println("Add integer, type 0 if you want to terminate");
+	number = input.nextInt();
+	return number;
   }  
   public static void addNumberToArray(int number) {
-	  array1[counter] = number;
-	  counter++;
+	array1[counter] = number;
+	counter++;
   }
 }
