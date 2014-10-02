@@ -9,7 +9,8 @@ public class ArrayComparer {
   static int counter = 0;
   static int number;
   
-  // Allows to choose on which array will work on
+  // guard is used for switching through arrays and for stopping the loop
+  // guard 1 => array1, guard 2 => array2, guard != (2 || 1) => stop
   static int guard = 1;
   
   static Scanner input = new Scanner( System.in );
@@ -32,18 +33,29 @@ public class ArrayComparer {
   }
   
   public static void print(){
-	System.out.println("Values for array 1 is:");
+	System.out.print("Values for array 1 is: ");
 	Printer.arrayNumbers(array1);
-	System.out.println("Values for array 2 is:");
+	System.out.print("Values for array 2 is: ");
 	Printer.arrayNumbers(array2);
-	System.out.println("Common data:");
+	System.out.print("Common data: ");
 	Printer.arrayNumbers(findCommonNumbers());
-	System.out.println("Number of common data is:");
-	System.out.print(elementsInCommon);
-	
-	//TODO
-//	System.out.println("Non-common values for array 1 is:");
-//	System.out.println("Non-common values for array 2 is:");
+	System.out.print("Number of common data is: ");
+	System.out.println(elementsInCommon);
+	System.out.print("Non-common values for array 1 is: ");
+	Printer.arrayNumbers(findNonCommonValues(array1, array2));
+	System.out.print("Non-common values for array 2 is: ");
+	Printer.arrayNumbers(findNonCommonValues(array2, array1));
+  }
+  
+  public static int[] findNonCommonValues(int[] mainArray, int[] checkArray){
+	int[] nonCommonValues = new int[100];
+
+	for (int i = 0; i<100; i++){
+	  if (isNumberInArray(mainArray[i], checkArray) == false && mainArray[i] != 0){
+		nonCommonValues[i] = mainArray[i];
+	  }
+	}
+	return nonCommonValues;
   }
   
   public static int[] findCommonNumbers(){
@@ -77,15 +89,19 @@ public class ArrayComparer {
 	  return false;
 	}
   }
-  // get user input
+  // Ask user input
   public static int number(){
 	int number;
-	System.out.println("Add integer, type 0 if you want to terminate");
+	if (guard == 1) {
+	  System.out.println("Enter data for array 1 (0 to finish):");
+	} else {
+	  System.out.println("Enter data for array 2 (0 to finish):");
+	}
 	number = input.nextInt();
 	return number;
   }  
  
-  // add numbers to arrays
+  // Add numbers to arrays
   public static void addNumberToArray(int number) {
 	if (guard == 1) {
 	  array1[counter] = number;
