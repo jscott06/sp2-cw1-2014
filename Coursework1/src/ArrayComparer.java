@@ -8,6 +8,7 @@ public class ArrayComparer {
   
   static int counter = 0;
   static int number;
+  static boolean bothArraysEmpty = true;
   
   // guard is used for switching through arrays and for stopping the loop
   // guard 1 => array1, guard 2 => array2, guard != (2 || 1) => stop
@@ -29,7 +30,11 @@ public class ArrayComparer {
 		}
 	  }
 	}
-	print();
+	if (bothArraysEmpty == false){
+	  print();
+	} else {
+	  System.out.println("Both arrays are empty");
+	}
   }
   
   public static void print(){
@@ -103,6 +108,7 @@ public class ArrayComparer {
  
   // Add numbers to arrays
   public static void addNumberToArray(int number) {
+	bothArraysEmpty = false; // I am adding a number to any of the 2 therefore bothArraysEmpty = false
 	if (guard == 1) {
 	  array1[counter] = number;
 	} else {
