@@ -5,20 +5,17 @@ public class ArrayComparer {
   static int[] array1 = new int[100];
   static int[] array2 = new int[100];
   static int elementsInCommon = 0;
-  
   static int counter = 0;
-  static int number;
   static boolean bothArraysEmpty = true;
-  
+  static Scanner input = new Scanner(System.in);
+
   // guard is used for switching through arrays and for stopping the loop
   // guard 1 => array1, guard 2 => array2, guard != (2 || 1) => stop
   static int guard = 1;
-  
-  static Scanner input = new Scanner(System.in);
-  static Printer printer = new Printer(); // Creates a new instance of the Printer class
 
   public static void main(String[] args) {
-	while (guard == 1 || guard == 2){
+	int number;
+	while (guard == 1 || guard == 2){ // While guard is 1 or 2 keeps asking for user input (1 for array1 and 2 for array2)
 	  number = getNumber();
 	  if (isZero(number) == false) {
 		switch (guard) {
@@ -26,7 +23,6 @@ public class ArrayComparer {
                    break;
           case 2:  if (isNumberInArray(number, array2) == false) { addNumberToArray(number); }
                    break;
-          default: break;
 		}
 	  }
 	}
@@ -37,22 +33,23 @@ public class ArrayComparer {
 	  System.out.println("Both arrays are empty");
 	}
   }
-  
+
   public static void print(){
+	Printer printer = new Printer(); // Creates a new instance of the Printer class
 	System.out.print("Values for array 1 is: ");
-	Printer.arrayNumbers(array1);
+	printer.arrayNumbers(array1);
 	System.out.print("Values for array 2 is: ");
-	Printer.arrayNumbers(array2);
+	printer.arrayNumbers(array2);
 	System.out.print("Common data: ");
-	Printer.arrayNumbers(findCommonValues());
+	printer.arrayNumbers(findCommonValues());
 	System.out.print("Number of common data is: ");
 	System.out.println(elementsInCommon);
 	System.out.print("Non-common values for array 1 is: ");
-	Printer.arrayNumbers(findNonCommonValues(array1, array2));
+	printer.arrayNumbers(findNonCommonValues(array1, array2));
 	System.out.print("Non-common values for array 2 is: ");
-	Printer.arrayNumbers(findNonCommonValues(array2, array1));
+	printer.arrayNumbers(findNonCommonValues(array2, array1));
   }
-  
+
   public static int[] findNonCommonValues(int[] mainArray, int[] checkArray){
 	int[] nonCommonValues = new int[100];
 
@@ -64,7 +61,7 @@ public class ArrayComparer {
 	}
 	return nonCommonValues;
   }
-  
+
   public static int[] findCommonValues(){
 	int[] commonValues = new int[100];
 	for (int i = 0; i<100; i++){
@@ -76,10 +73,10 @@ public class ArrayComparer {
 	}
 	return commonValues;
   }
-  
+
   // Checks if number is contained in provided array
   public static boolean isNumberInArray(int number, int[] array){
-	  boolean isContained = false;
+	boolean isContained = false;
 	for (int element : array) {
 	  if (number == element) { isContained = true; }
 	}
@@ -95,6 +92,7 @@ public class ArrayComparer {
 	  return false;
 	}
   }
+
   // Ask user input
   public static int getNumber(){
 	int number;
@@ -106,7 +104,7 @@ public class ArrayComparer {
 	number = input.nextInt();
 	return number;
   }  
- 
+
   // Adds number to array depending on value of the guard
   public static void addNumberToArray(int number) {
 	bothArraysEmpty = false; // Adding a number to any of the 2 arrays therefore bothArraysEmpty = false

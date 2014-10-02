@@ -1,14 +1,13 @@
-
 public class Printer {
-  public static void arrayNumbers(int[] array) {
+  public void arrayNumbers(int[] array) {
 	boolean isEmpty = true;
 	for (int element : array) {
 	  if (element != 0) { 
-		  System.out.print(element + " "); 
-		  isEmpty = false;
+		System.out.print(element + " "); 
+		isEmpty = false;
 	  }
 	}
-	if (isEmpty == true) {System.out.print("Empty array"); }
+	if (isEmpty == true) { System.out.print("Empty array"); }
 	System.out.println("");
   }
 }
