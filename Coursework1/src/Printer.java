@@ -1,13 +1,10 @@
 public class Printer {
   public void arrayNumbers(int[] array) {
-	boolean isEmpty = true;
-	for (int element : array) {
-	  if (element != 0) { 
+	for (int element : array) { // Iterate through each element of the array
+	  if (element != 0) { // and print every number that is not zero
 		System.out.print(element + " "); 
-		isEmpty = false;
 	  }
 	}
-	if (isEmpty == true) { System.out.print("Empty array"); }
 	System.out.println("");
   }
 }
