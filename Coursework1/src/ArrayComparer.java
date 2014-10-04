@@ -2,8 +2,12 @@ import java.util.Scanner;
 
 public class ArrayComparer {
 
-  static int[] array1 = new int[100];
-  static int[] array2 = new int[100];
+  final static int HUNDRED = 100;
+  final static int ONE = 1;
+  final static int TWO = 2;
+  
+  static int[] array1 = new int[HUNDRED];
+  static int[] array2 = new int[HUNDRED];
   static int elementsInCommon = 0;
   static int counter = 0;
   static boolean bothArraysEmpty = true;
@@ -15,7 +19,7 @@ public class ArrayComparer {
 
   public static void main(String[] args) {
 	int number;
-	while (guard == 1 || guard == 2){ // While guard is 1 or 2 keeps asking for user input (1 for array1 and 2 for array2)
+	while (guard == ONE || guard == TWO){ // While guard is 1 or 2 keeps asking for user input (1 for array1 and 2 for array2)
 	  number = getNumber();
 	  if (isZero(number) == false) {
 		switch (guard) {
@@ -51,9 +55,9 @@ public class ArrayComparer {
   }
 
   public static int[] findNonCommonValues(int[] mainArray, int[] checkArray){
-	int[] nonCommonValues = new int[100];
+	int[] nonCommonValues = new int[HUNDRED];
 
-	for (int i = 0; i<100; i++){
+	for (int i = 0; i<HUNDRED; i++){
 	  // When number is NOT contained in checkArray and is not a 0, add number to nonCommonValues array
 	  if (isNumberInArray(mainArray[i], checkArray) == false && mainArray[i] != 0){
 		nonCommonValues[i] = mainArray[i];
@@ -63,8 +67,8 @@ public class ArrayComparer {
   }
 
   public static int[] findCommonValues(){
-	int[] commonValues = new int[100];
-	for (int i = 0; i<100; i++){
+	int[] commonValues = new int[HUNDRED];
+	for (int i = 0; i<HUNDRED; i++){
 	  // When number is contained in array2 and is not a 0, add number to commonValues array
       if (isNumberInArray(array1[i], array2) == true && array1[i] != 0){
         commonValues[i] = array1[i];
@@ -96,7 +100,7 @@ public class ArrayComparer {
   // Ask user input
   public static int getNumber(){
 	int number;
-	if (guard == 1) {
+	if (guard == ONE) {
 	  System.out.println("Enter data for array 1 (0 to finish):");
 	} else {
 	  System.out.println("Enter data for array 2 (0 to finish):");
@@ -108,7 +112,7 @@ public class ArrayComparer {
   // Adds number to array depending on value of the guard
   public static void addNumberToArray(int number) {
 	bothArraysEmpty = false; // Adding a number to any of the 2 arrays therefore bothArraysEmpty = false
-	if (guard == 1) {
+	if (guard == ONE) {
 	  array1[counter] = number;
 	} else {
 	  array2[counter] = number;
