@@ -23,9 +23,9 @@ public class ArrayComparer {
 	  number = getNumber();
 	  if (isZero(number) == false) {
 		switch (guard) {
-          case 1:  if (isNumberInArray(number, array1) == false) { addNumberToArray(number); }
+          case ONE:  if (isNumberInArray(number, array1) == false) { addNumberToArray(number); }
                    break;
-          case 2:  if (isNumberInArray(number, array2) == false) { addNumberToArray(number); }
+          case TWO:  if (isNumberInArray(number, array2) == false) { addNumberToArray(number); }
                    break;
 		}
 	  }
